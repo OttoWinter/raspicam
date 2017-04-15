@@ -333,7 +333,11 @@ namespace raspicam {
             crop.rect.height = (65536 * state->roi.h);
 
             status = mmal_port_parameter_set(camera->control, &crop.hdr);
-
+            if ( status ) {
+                cerr<< ( "camera crop error" );
+                mmal_component_destroy ( camera );
+                return 0;
+            }
 
             // PR : plug the callback to the video port
             status = mmal_port_enable ( video_port,video_buffer_callback );
