@@ -129,6 +129,7 @@ namespace raspicam {
             //sets sensor mode. Can not be changed once camera is opened
             void setSensorMode ( int mode );
 
+            void setROI ( float x, float y, float w, float h );
             void setWidth ( unsigned int width ) ;
             void setHeight ( unsigned int height );
             void setCaptureSize ( unsigned int width, unsigned int height );
@@ -160,6 +161,9 @@ namespace raspicam {
             unsigned int getSensorMode() const
             {
                 return State.sensor_mode;
+            }
+            PARAM_FLOAT_RECT_T getROI() const {
+                return State.roi;
             }
             unsigned int getWidth() const
             {

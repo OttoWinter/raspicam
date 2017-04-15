@@ -75,6 +75,9 @@ namespace raspicam {
     void RaspiCam::setFormat(RASPICAM_FORMAT fmt){
          _impl->setFormat( fmt);
     }
+    void setROI ( float x, float y, float w, float h ) {
+        _impl->setROI(x, y, w, h);
+    }
     void RaspiCam::setWidth ( unsigned int width ) {
         _impl->setWidth ( width );
     }
@@ -140,6 +143,7 @@ namespace raspicam {
 
     
     RASPICAM_FORMAT RaspiCam::getFormat()const{return _impl->getFormat( ); }
+    PARAM_FLOAT_RECT_T RaspiCam::getROI() const{return _impl->getROI(); }
     unsigned int RaspiCam::getWidth() const{return _impl->getWidth() ;}
     unsigned int RaspiCam::getHeight() const{return _impl->getHeight()  ;}
     unsigned int RaspiCam::getBrightness() const{return _impl->getBrightness()  ;}

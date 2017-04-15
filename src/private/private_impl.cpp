@@ -323,6 +323,15 @@ namespace raspicam {
                 return 0;
             }
 
+            MMAL_PARAMETER_INPUT_CROP_T crop = {{MMAL_PARAMETER_INPUT_CROP, sizeof(MMAL_PARAMETER_INPUT_CROP_T)}};
+            crop.rect.x = (65536 * state->roi.x);
+            crop.rect.y = (65536 * state->roi.y);
+            crop.rect.width = (65536 * state->roi.w);
+            crop.rect.height = (65536 * state->roi.h);
+
+            status = mmal_port_parameter_set(camera->control, &crop.hdr)
+
+
             // PR : plug the callback to the video port
             status = mmal_port_enable ( video_port,video_buffer_callback );
             if ( status ) {
@@ -560,7 +569,14 @@ namespace raspicam {
 
         }
 
-
+        void Private_Impl::setROI ( float x, float y, float w, float h ) {
+            PARAM_FLOAT_RECT_T roi;
+            roi.x = x;
+            roi.y = y;
+            roi.w = w;
+            roi.h = h;
+            State.roi = roi;
+        }
 
         void Private_Impl::setWidth ( unsigned int width ) {
             State.width = width;

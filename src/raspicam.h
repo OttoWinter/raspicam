@@ -95,6 +95,10 @@ namespace raspicam {
         /**Sets capture format
          */
         void setFormat ( RASPICAM_FORMAT fmt );
+        /**Sets region of interest (=ROI) of sensor. [x,y,w,h] from 0 to 1
+         * default: [0.0, 0.0, 1.0, 1.0] for full sensor size
+         */
+        void setROI ( float x, float y, float w, float h );
         /**Sets camera width. Use a multiple of 320 (640, 1280)
          */
         void setWidth ( unsigned int width ) ;
@@ -142,6 +146,7 @@ namespace raspicam {
 
         //Accessors
         RASPICAM_FORMAT getFormat() const;
+        PARAM_FLOAT_RECT_T getROI() const;
         unsigned int getWidth() const;
         unsigned int getHeight() const;
         unsigned int getBrightness() const;
