@@ -38,6 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "private_impl.h"
 #include <iostream>
 #include <cstdio>
+#include <cmath>
 #include "mmal/util/mmal_util.h"
 #include "mmal/util/mmal_util_params.h"
 #include "mmal/util/mmal_default_components.h"
@@ -199,16 +200,18 @@ namespace raspicam {
          */
 
         size_t Private_Impl::getImageTypeSize ( RASPICAM_FORMAT type ) const{
+            unsigned int width = ceil(State.roi.w * getWidth());
+            unsigned int height = ceil(State.roi.h * getHeight());
             switch ( type ) {
             case RASPICAM_FORMAT_YUV420:
-                return getWidth() *getHeight() + 2* ( ( getWidth() /2 *getHeight() /2 ) );
+                return width * height + 2 * ((width/2 * height/2));
                 break;
             case RASPICAM_FORMAT_GRAY:
-                return getWidth() *getHeight();
+                return width * height;
                 break;
             case RASPICAM_FORMAT_BGR:
             case RASPICAM_FORMAT_RGB:
-                return 3*getWidth() *getHeight();
+                return 3 * width * height;
                 break;
             default:
                 return 0;
