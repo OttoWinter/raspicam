@@ -146,7 +146,6 @@ namespace raspicam {
 
         //Accessors
         RASPICAM_FORMAT getFormat() const;
-        PARAM_FLOAT_RECT_T getROI() const;
         unsigned int getWidth() const;
         unsigned int getHeight() const;
         unsigned int getBrightness() const;

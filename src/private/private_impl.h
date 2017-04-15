@@ -162,9 +162,6 @@ namespace raspicam {
             {
                 return State.sensor_mode;
             }
-            PARAM_FLOAT_RECT_T getROI() const {
-                return State.roi;
-            }
             unsigned int getWidth() const
             {
                 return State.width;
