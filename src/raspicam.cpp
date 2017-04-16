@@ -137,6 +137,9 @@ namespace raspicam {
     void RaspiCam::setFrameRate ( int frames_per_second ) {
         _impl->setFrameRate ( frames_per_second );
     }
+    void RaspiCam::setSensorMode ( unsigned int mode ) {
+        _impl->setSensorMode ( mode );
+    }
 
     
     RASPICAM_FORMAT RaspiCam::getFormat()const{return _impl->getFormat( ); }
@@ -158,6 +161,7 @@ namespace raspicam {
     RASPICAM_IMAGE_EFFECT RaspiCam::getImageEffect() const{return _impl->getImageEffect() ;};
     RASPICAM_METERING RaspiCam::getMetering() const{return _impl->getMetering() ;}
     int RaspiCam::getFrameRate() const{return _impl->getFrameRate() ;}
+    unsigned int RaspiCam::getSensorMode() const { return _impl->getSensorMode(); }
     bool RaspiCam::isHorizontallyFlipped() const {return _impl->isHorizontallyFlipped()  ;}
     bool RaspiCam::isVerticallyFlipped() const {return _impl->isVerticallyFlipped() ;}
 
